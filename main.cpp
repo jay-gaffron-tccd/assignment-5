@@ -65,9 +65,12 @@ void populateMenu(vector<MenuItem> &entireMenu)
 
 void showMenu(vector<MenuItem> &m)
 {
+  string color = "\x1b[34m"; 
+  string reset = "\x1b[0m";
+
   cout << fixed << setprecision(2);
   cout << "DrT's Effcient Menu" << endl;
-  cout << "ADD \tNAME \t COST \tREMOVE\tCOUNT\tDESC"<<endl;
+  cout << color << "ADD \tNAME \t COST \tREMOVE\tCOUNT\tDESC" << reset <<endl;
   for(int i = 0; i < m.size(); i++)
     {
       cout << m[i].AddLetter << ")" << setw(10) << m[i].Name
@@ -88,7 +91,10 @@ void acceptOrder(vector<MenuItem> &m)
 
   do
   {
-    cout << "\nPlease choose an item (x to Exit): ";
+    string color = "\x1b[34m"; 
+    string reset = "\x1b[0m";
+
+    cout << color << "\nPlease choose an item (x to Exit): " << reset;
     cin >> option;
 
     for(int i=0; i < m.size(); i++)
@@ -137,7 +143,7 @@ void acceptOrder(vector<MenuItem> &m)
 
   cout << "\nThank you for placing your order." << endl;
 
-  cout << "\nCash or Credit? (0 for cash, 1 for credit)";
+  cout << "\nCash or Credit? (0 for cash, 1 for credit): ";
   cin >> paymentCredit;
 
   if (!paymentCredit)
@@ -159,6 +165,9 @@ void acceptOrder(vector<MenuItem> &m)
 
 void printReceipt(vector<MenuItem> &m, double subtotal, double tip, double payment, double change)
 {
+  string color = "\x1b[34m"; 
+  cout << color;
+
   double tax = ((subtotal + tip) * 0.0825);
   int thing = 0;
   cout << "Receipt" << endl;
@@ -180,6 +189,8 @@ void printReceipt(vector<MenuItem> &m, double subtotal, double tip, double payme
     cout << "Amount: $" << payment << endl;
     cout << "Change: $" << change << endl;
   }
+  string reset = "\x1b[0m";
+  cout << reset;
   cout << "Press any key to continue: ";
   cin >> thing;
 }
